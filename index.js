@@ -26,7 +26,7 @@ app.post(
       return res.status(400).json({ errors: errors.array() });
     }
     let name = req.body.name;
-    let sql = "INSERT INTO Persons (name) VALUES (?)";
+    let sql = "INSERT INTO persons (name) VALUES (?)";
     db.query(sql, [name], (err, result) => {
       if (err) throw err;
       res.send("Person added...");
@@ -36,7 +36,7 @@ app.post(
 
 // to retrieve user data
 app.get("/api/:user_id", (req, res) => {
-  let sql = "SELECT * FROM Persons WHERE id = ?";
+  let sql = "SELECT * FROM persons WHERE id = ?";
   db.query(sql, [req.params.user_id], (err, result) => {
     if (err) throw err;
     res.send(result);
@@ -52,7 +52,7 @@ app.put(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    let sql = "UPDATE Persons SET name = ? WHERE id = ?";
+    let sql = "UPDATE persons SET name = ? WHERE id = ?";
     db.query(
       sql,
       [req.body.name, req.params.user_id],
@@ -66,7 +66,7 @@ app.put(
 
 // to delete user detail
 app.delete("/api/:user_id", (req, res) => {
-  let sql = "DELETE FROM Persons WHERE id = ?";
+  let sql = "DELETE FROM persons WHERE id = ?";
   db.query(sql, [req.params.user_id], (err, result) => {
     if (err) throw err;
     res.send("Person deleted...");
