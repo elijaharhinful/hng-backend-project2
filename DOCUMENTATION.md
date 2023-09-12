@@ -124,14 +124,10 @@ json {
 
 If a required field is missing or invalid, the API responds with a `400 Bad Request` status and an error message. For example, if the `name` field is missing or not a string in a `POST` or `PUT` request, the API will return:
 
-json {
-"errors": [
+
 {
-"msg": "Name must be a string",
-"param": "name",
-"location": "body"
-}
-]
+"status": "boolean",
+"message": "error message",
 }
 
 ## Examples

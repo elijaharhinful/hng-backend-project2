@@ -106,13 +106,21 @@ app.put(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    let name = req.body.name;
-    let user_id = req.params.user_id;
+
     try {
+      let name = req.body.name;
+      let user_id = req.params.user_id;
+      if (!name) {
+        return res
+          .status(400)
+          .json({ status: false, message: "Please provide a name" });
+      }
       let sql = "UPDATE persons SET name = ? WHERE id = ?";
       db.query(sql, [name, user_id], (err, result) => {
         if (err) {
-          return res.status(500).json({ message: "Error updating person", err });
+          return res
+            .status(500)
+            .json({ message: "Error updating person", err });
         }
         if (isNaN(user_id) || result.length === 0) {
           return res.status(404).json({
@@ -152,7 +160,9 @@ app.delete(
       db.query(sql, [user_id], (err, result) => {
         if (err) {
           console.error("Database Error:", err);
-          return res.status(500).json({ message: "Error deleting person", err });
+          return res
+            .status(500)
+            .json({ message: "Error deleting person", err });
         }
         if (isNaN(user_id) || result.affectedRows === 0) {
           return res.status(404).json({
