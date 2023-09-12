@@ -21,15 +21,17 @@ Creates a new person in the database.
 
 JSON body must contain `name` field:
 
-````{
+```
+{
     "name": "string"
-}```
+}
+```
 
 **Response:**
 
 Returns a success message:
-````
 
+```
 {
 "status": boolean,
 "message": "string",
@@ -41,7 +43,7 @@ Returns a success message:
 }
 }
 
-````
+```
 
 ### GET /api/:user_id
 
@@ -55,7 +57,8 @@ No body required. The user id is passed as a parameter in the URL.
 
 Returns the person's data:
 
-```   {
+```
+{
       "status": boolean,
       "message": "string",
       "data": {
@@ -64,8 +67,8 @@ Returns the person's data:
               "name": "string"
           }
       }
-  }
-````
+}
+```
 
 ### PUT /api/:user_id
 
@@ -75,17 +78,20 @@ Updates a person's data in the database.
 
 JSON body contains the new `name`:
 
-```{
+```
+{
 "name": "new name"
 }
 ```
+
 The user id is passed as a parameter in the URL.
 
 **Response:**
 
 Returns a success message:
 
-```{
+```
+{
     "status": boolean,
     "message": "string",
     "data": {
@@ -94,7 +100,10 @@ Returns a success message:
             "name": "string"
         }
     }
-}```
+}
+```
+
+
 ### DELETE /api/:user_id
 
 Deletes a person's data from the database.
@@ -129,20 +138,38 @@ json {
 
 1. To add a new person named "Kofi" to the database, you would send a `POST` request to `http://localhost:8000/api` (use localhost when working in development) with the following body:
 
-json {
-"name": "Kofi"
+```
+{
+"status": boolean,
+"message": "string",
+"data": {
+"person": {
+"id": "string",
+"name": "string"
 }
+}
+}
+```
 
 You should receive a response with the message "Person added."
 
 2. To retrieve the data of a person with an id of "1" from the database, you would send a `GET` as such `http://localhost:8000/api/1`. No body is required. The user id is passed as a parameter in the url.
 
 You should receive a json as such:
-json {
-"id": 1,
-"name": "string"
+```
+{
+      "status": boolean,
+      "message": "string",
+      "data": {
+          "person": {
+              "id": "string",
+              "name": "string"
+          }
+      }
 }
+```
 
 ## Limitations & Assumptions
 
 The API currently assumes that the 'name' field is always a string. It does not support other data types for the 'name' field.
+````
