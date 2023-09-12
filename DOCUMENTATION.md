@@ -27,9 +27,18 @@ json {
 **Response:**
 
 Returns a success message:
-json {
-    "message": "Person added."
-}
+```
+{
+  "status": boolean,
+  "message": "string",
+      "data": {
+          "person": {
+              "id": "string",
+              "name": "string"
+          }
+      }
+  }
+```
 
 ### GET /api/:user_id
 
