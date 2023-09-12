@@ -125,11 +125,12 @@ json {
 If a required field is missing or invalid, the API responds with a `400 Bad Request` status and an error message. For example, if the `name` field is missing or not a string in a `POST` or `PUT` request, the API will return:
 
 
+```
 {
 "status": "boolean",
 "message": "error message",
 }
-
+```
 ## Examples
 
 1. To add a new person named "Kofi" to the database, you would send a `POST` request to `http://localhost:8000/api` (use localhost when working in development) with the following body:
